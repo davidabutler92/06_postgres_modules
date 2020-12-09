@@ -55,6 +55,13 @@ describe('app tests', () => {
     });
   });
 
-  
-  
+  it('should delete an animal by id', async() => {
+    const animal = await Animal.insert({ color: 'brown', type: 'mammal' });
+    
+    const response = await request(app)
+      .delete(`/api/v1/animals/${animal.id}`);
+    
+    expect(response.body).toEqual(animal);
+  });
+
 });
